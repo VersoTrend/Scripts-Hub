@@ -107,22 +107,23 @@ local ScriptsDB = {
     }
 }
 
--- [[ O SISTEMA DE CONSTRUÇÃO ORGANIZADO POR POPULARIDADE ]]
+-- [[ SISTEMA DE CONSTRUÇÃO V2.0 - ORGANIZADO E SEGURO ]]
 
 local SortedGames = {}
 
--- Converte o Banco de Dados em uma lista para ordenar
+-- 1. Organiza os jogos por popularidade
 for name, content in pairs(ScriptsDB) do
-    content.Popularity = content.Popularity or 0 
-    table.insert(SortedGames, {Name = name, Data = content})
+    if type(content) == "table" then
+        content.Popularity = content.Popularity or 0 
+        table.insert(SortedGames, {Name = name, Data = content})
+    end
 end
 
--- Organiza: Maior Popularity primeiro
 table.sort(SortedGames, function(a, b)
     return a.Data.Popularity > b.Data.Popularity
 end)
 
--- Cria as abas na ordem organizada
+-- 2. Cria as abas e botões
 for _, gameInfo in ipairs(SortedGames) do
     local TabName = gameInfo.Name
     local Content = gameInfo.Data
@@ -133,9 +134,8 @@ for _, gameInfo in ipairs(SortedGames) do
         PremiumOnly = false
     })
 
-    -- Cria os botões para cada script dentro do jogo
     for _, data in ipairs(Content) do
-        -- Verifica se é uma tabela de script (pula o valor da Popularity)
+        -- SÓ CRIA BOTÃO SE FOR UMA TABELA (IGNORA O NÚMERO DA POPULARIDADE)
         if type(data) == "table" and data.Name then
             CurrentTab:AddButton({
                 Name = data.Name .. " " .. data.Status,
@@ -148,16 +148,15 @@ for _, gameInfo in ipairs(SortedGames) do
                         loadstring(result)()
                         OrionLib:MakeNotification({
                             Name = "Sucesso!",
-                            Content = "Carregando: " .. data.Name,
+                            Content = "Carregando " .. data.Name,
                             Time = 3
                         })
                     else
                         OrionLib:MakeNotification({
-                            Name = "Erro de Link",
-                            Content = "O script pode estar offline ou link quebrado.",
+                            Name = "Erro",
+                            Content = "Script offline ou link quebrado.",
                             Time = 5
                         })
-                        warn("Erro ao carregar " .. data.Name .. ": " .. tostring(result))
                     end
                 end    
             })
@@ -165,16 +164,8 @@ for _, gameInfo in ipairs(SortedGames) do
     end
 end
 
--- Aba de Configurações Extra
+-- Aba de Ajustes
 local ConfigTab = Window:MakeTab({Name = "Ajustes", Icon = "rbxassetid://4483345998"})
+ConfigTab:AddButton({Name = "Fechar Hub", Callback = function() OrionLib:Destroy() end})
 
-ConfigTab:AddButton({
-    Name = "Fechar Hub (Destroy)",
-    Callback = function() OrionLib:Destroy() end    
-})
-
-ConfigTab:AddLabel("Script Hub Elite v2.0 - 2026")
-
--- Inicializa a Interface
 OrionLib:Init()
-          
