@@ -10,7 +10,7 @@ local Window = OrionLib:MakeWindow({
     IntroText = "Carregando Base de Dados..."
 })
 
--- [[ BANCO DE DATA - PARTE 1 (10 JOGOS X 10 SCRIPTS) ]]
+-- [[ BANCO DE DATA COMPLETO ]]
 local ScriptsDB = {
     ["Blox Fruits"] = {Popularity = 100,
         {Name = "Redz Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/REDZHUB/BloxFruits/main/main.lua"},
@@ -40,15 +40,18 @@ local ScriptsDB = {
         {Name = "Vynixu Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/Vynixu/VynixuLib/main/MM2/Script.lua"},
         {Name = "Eclipse Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/Exunys/Eclipse-Hub/main/Eclipse%20Hub.lua"},
         {Name = "Kidchi Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/Kidchi77/Kidchi/main/MM2.lua"},
-        {Name = "Ray Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/SpaceSaver/RayHub/main/MM2.lua"},
+        {Name = "Ray Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/SpaceSaver/RayHub/main/MM2.lua"}
+    },
     ["Sol's RNG"] = {Popularity = 70,
         {Name = "Cupid Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/CupidHub/Scripts/main/SolsRNG.lua"},
         {Name = "Relz Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/thanhdat4761/001/main/SolsRNG.lua"},
-        {Name = "Glovi Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/pajhen/GloviHub/main/SolsRNG.lua"},
+        {Name = "Glovi Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/pajhen/GloviHub/main/SolsRNG.lua"}
+    },
     ["Dress to Impress"] = {Popularity = 75,
         {Name = "LALOL Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/LALOLH/LALOLHub/main/DressToImpress.lua"},
         {Name = "Tora Is Me", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/ToraIsMe/ToraIsMe/main/DTI"},
-        {Name = "Silly Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/SillyScripts/DTI/main/main.lua"},
+        {Name = "Silly Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/SillyScripts/DTI/main/main.lua"}
+    },
     ["Doors"] = {Popularity = 94,
         {Name = "MSPAINT", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/notpoiu/mspaint/main/main.lua"},
         {Name = "FFJ Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/FFJ1/Roblox-Scripts/main/Doors.lua"},
@@ -56,14 +59,16 @@ local ScriptsDB = {
         {Name = "Morph Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/NukeVsCity/TheHole/main/Doors.lua"},
         {Name = "Poops Hub", Status = "(with key 🔐)", Link = "https://raw.githubusercontent.com/Script-Poops/Doors/main/Main.lua"},
         {Name = "BlackTrap", Status = "(with key 🔐)", Link = "https://raw.githubusercontent.com/S-S-B-T-L/Doors/main/BlackTrap.lua"},
-        {Name = "King Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/Anon-V/KingHub/main/Doors.lua"},
+        {Name = "King Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/Anon-V/KingHub/main/Doors.lua"}
+    },
     ["Brookhaven"] = {Popularity = 96,
         {Name = "Ice Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/IceyX-S/IceyX/main/IceHub.lua"},
         {Name = "Redz Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/REDZHUB/Brookhaven/main/main.lua"},
         {Name = "Speed Hub X", Status = "(with key 🔐)", Link = "https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"},
         {Name = "Tora Is Me", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/ToraIsMe/ToraIsMe/main/Brookhaven"},
         {Name = "Chit Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/ChitScripts/Main/main/Brookhaven.lua"},
-        {Name = "Ghost Hub", Status = "(with key 🔐)", Link = "https://raw.githubusercontent.com/GhostPlayer352/Test45/main/GhostHub"},
+        {Name = "Ghost Hub", Status = "(with key 🔐)", Link = "https://raw.githubusercontent.com/GhostPlayer352/Test45/main/GhostHub"}
+    },
     ["Adopt Me!"] = {Popularity = 97,
         {Name = "Nexer Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/p0p-3ye/Nexer/main/AdoptMe.lua"},
         {Name = "Ice Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/IceyX-S/IceyX/main/IceHub.lua"},
@@ -100,42 +105,31 @@ local ScriptsDB = {
         {Name = "Simple Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/Batz-X/Scripts/main/Simple99Nights"},
         {Name = "Nightmare", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/NightmareScripts/Forest/main/99Nights.lua"}
     },
-    ["Blade Ball"] = {Popularity 79,
+    ["Blade Ball"] = {Popularity = 79,
         {Name = "Redz Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/REDZHUB/BladeBall/main/main.lua"},
         {Name = "FFJ Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/FFJ1/Roblox-Scripts/main/BladeBall.lua"},
         {Name = "Bedol Hub", Status = "(with key 🔐)", Link = "https://raw.githubusercontent.com/3345-c0ne-neko/v6/main/main.lua"}
     }
 }
 
--- [[ SISTEMA DE CONSTRUÇÃO V2.0 - ORGANIZADO E SEGURO ]]
-
+-- [[ LÓGICA DE CONSTRUÇÃO ]]
 local SortedGames = {}
-
--- 1. Organiza os jogos por popularidade
 for name, content in pairs(ScriptsDB) do
-    if type(content) == "table" then
-        content.Popularity = content.Popularity or 0 
-        table.insert(SortedGames, {Name = name, Data = content})
-    end
+    table.insert(SortedGames, {Name = name, Data = content})
 end
 
 table.sort(SortedGames, function(a, b)
     return a.Data.Popularity > b.Data.Popularity
 end)
 
--- 2. Cria as abas e botões
 for _, gameInfo in ipairs(SortedGames) do
-    local TabName = gameInfo.Name
-    local Content = gameInfo.Data
-
     local CurrentTab = Window:MakeTab({
-        Name = TabName,
+        Name = gameInfo.Name,
         Icon = "rbxassetid://4483345998",
         PremiumOnly = false
     })
 
-    for _, data in ipairs(Content) do
-        -- SÓ CRIA BOTÃO SE FOR UMA TABELA (IGNORA O NÚMERO DA POPULARIDADE)
+    for _, data in ipairs(gameInfo.Data) do
         if type(data) == "table" and data.Name then
             CurrentTab:AddButton({
                 Name = data.Name .. " " .. data.Status,
@@ -143,20 +137,11 @@ for _, gameInfo in ipairs(SortedGames) do
                     local success, result = pcall(function()
                         return game:HttpGet(data.Link)
                     end)
-                    
                     if success then
                         loadstring(result)()
-                        OrionLib:MakeNotification({
-                            Name = "Sucesso!",
-                            Content = "Carregando " .. data.Name,
-                            Time = 3
-                        })
+                        OrionLib:MakeNotification({Name = "Sucesso", Content = "Injetando " .. data.Name, Time = 3})
                     else
-                        OrionLib:MakeNotification({
-                            Name = "Erro",
-                            Content = "Script offline ou link quebrado.",
-                            Time = 5
-                        })
+                        OrionLib:MakeNotification({Name = "Erro", Content = "Falha ao baixar script.", Time = 5})
                     end
                 end    
             })
@@ -164,7 +149,6 @@ for _, gameInfo in ipairs(SortedGames) do
     end
 end
 
--- Aba de Ajustes
 local ConfigTab = Window:MakeTab({Name = "Ajustes", Icon = "rbxassetid://4483345998"})
 ConfigTab:AddButton({Name = "Fechar Hub", Callback = function() OrionLib:Destroy() end})
 
