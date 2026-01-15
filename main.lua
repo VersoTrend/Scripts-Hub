@@ -1,6 +1,4 @@
 -- [[ HUB MEGA ELITE - SISTEMA DE CARREGAMENTO SEGURO ]]
-
--- 1. Tenta carregar a biblioteca de dois links diferentes caso um esteja fora do ar
 local success, OrionLib = pcall(function()
     return loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Orion/main/source'))()
 end)
@@ -9,21 +7,17 @@ if not success or type(OrionLib) ~= "table" then
     OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/jensonhirst/Orion/main/source'))()
 end
 
--- 2. Limpa janelas antigas para evitar sobreposição
 if _G.OrionLib then _G.OrionLib:Destroy() end
 _G.OrionLib = OrionLib
-
--- 3. Pequena pausa de segurança
 task.wait(0.2)
 
--- [[ CRIAÇÃO DA JANELA COM SISTEMA DE MOVIMENTAÇÃO ATIVO ]]
 local Window = OrionLib:MakeWindow({
     Name = "MEU SCRIPT HUB MEGA ELITE", 
     HidePremium = false, 
     SaveConfig = true, 
     ConfigFolder = "MegaEliteConfig",
     IntroText = "Carregando Scripts Atualizados...",
-    Draggable = true -- ESTA LINHA habilita o arrastar da GUI
+    Draggable = true 
 })
 
 -- [[ 3. ABA INVISÍVEL - CONFIGURAÇÕES ]]
@@ -34,33 +28,27 @@ local ConfigTab = Window:MakeTab({
 })
 
 ConfigTab:AddSection({Name = "Ajustes do Hub"})
-
 ConfigTab:AddButton({
     Name = "Rejoin Server (Reentrar)",
     Callback = function()
         game:GetService("TeleportService"):Teleport(game.PlaceId, game.Players.LocalPlayer)
     end    
 })
-
 ConfigTab:AddButton({
     Name = "Fechar Hub (Destroy)",
-    Callback = function()
-        OrionLib:Destroy()
-    end    
+    Callback = function() OrionLib:Destroy() end    
 })
 
--- Esconde o botão da aba na barra lateral (Side Bar)
 task.spawn(function()
     local gui = game:GetService("CoreGui"):WaitForChild("Orion", 10)
     if gui then
         local nav = gui.Main:WaitForChild("Navigation", 5)
-        local btn = nav:WaitForChild("SettingsHide", 5)
+        local btn = nav:WaitForChild("SettingsHide", 10)
         if btn then btn.Visible = false end
     end
 end)
 
-
--- [[ ABAIXO COMEÇA O SEU BANCO DE DADOS ]]
+-- [[ BANCO DE DADOS COMPLETO ]]
 local ScriptsDB = {
     ["Blox Fruits"] = {Popularity = 100,
         {Name = "Redz Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/REDZHUB/BloxFruits/main/main.lua"},
@@ -98,7 +86,6 @@ local ScriptsDB = {
         {Name = "Nightmare", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/NightmareScripts/Main/main/DeadRails.lua"},
         {Name = "Dead Hub GUI", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/Dead/Scripts/main/Rails.lua"}
     },
-    
     ["MM2"] = {Popularity = 95,
         {Name = "Vynixu Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/Vynixu/VynixuLib/main/MM2/Script.lua"},
         {Name = "Eclipse Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/Exunys/Eclipse-Hub/main/Eclipse%20Hub.lua"},
@@ -138,11 +125,7 @@ local ScriptsDB = {
         {Name = "Vynixu Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/Vynixu/VynixuLib/main/AdoptMe.lua"},
         {Name = "Hohub", Status = "(with key 🔐)", Link = "https://raw.githubusercontent.com/hussain123/Hohub/main/AdoptMe"},
         {Name = "G-Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/G-Hub-Script/G-Hub/main/AdoptMe.lua"},
-        {Name = "Banana Hub", Status = "(with key 🔐)", Link = "https://raw.githubusercontent.com/OFFXBR/BananaHub/main/AdoptMe.lua"},
-        {Name = "Storm Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/Storm/AdoptMe/main/main.lua"},
-        {Name = "Best Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/Best/AdoptMe/main/main.lua"},
-        {Name = "Auto Pet", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/Auto/Pet/main/main.lua"},
-        {Name = "Mint Hub", Status = "(with key 🔐)", Link = "https://raw.githubusercontent.com/Mint/AdoptMe/main/main.lua"}
+        {Name = "Banana Hub", Status = "(with key 🔐)", Link = "https://raw.githubusercontent.com/OFFXBR/BananaHub/main/AdoptMe.lua"}
     },
     ["Fish It!"] = {Popularity = 98,
         {Name = "Redz Hub", Status = "(keyless ✅)", Link = "https://raw.githubusercontent.com/REDZHUB/FishIt/main/main.lua"},
@@ -212,72 +195,39 @@ for _, gameInfo in ipairs(SortedGames) do
     end
 end
 
-local ConfigTab = Window:MakeTab({Name = "Ajustes", Icon = "rbxassetid://4483345998"})
-ConfigTab:AddButton({Name = "Fechar Hub", Callback = function() OrionLib:Destroy() end})
-
+-- Inicializa (APENAS UMA VEZ)
 OrionLib:Init()
 
--- [[ 5. FECHAMENTO E INJETOR DO BOTÃO SUPERIOR ]]
-OrionLib:Init()
-
--- O código abaixo só roda DEPOIS que a interface já apareceu
+-- [[ INJETOR DO BOTÃO SUPERIOR ]]
 task.spawn(function()
     local playerGui = game:GetService("CoreGui")
-    -- Espera a interface Orion carregar na memória
     local orionGui = playerGui:WaitForChild("Orion", 15)
     
     if orionGui then
         local main = orionGui:WaitForChild("Main")
         local topbar = main:WaitForChild("Topbar")
-        local content = main:WaitForChild("Content") -- Onde ficam as páginas
+        local content = main:WaitForChild("Content")
         
-        -- Criação do Botão de Engrenagem
         local ConfigBtn = Instance.new("ImageButton")
         ConfigBtn.Name = "CustomSettingsBtn"
         ConfigBtn.Parent = topbar
         ConfigBtn.BackgroundTransparency = 1
-        -- Posição: ajustado para ficar à esquerda dos botões padrão (minimizar/fechar)
         ConfigBtn.Position = UDim2.new(1, -78, 0.5, -10) 
         ConfigBtn.Size = UDim2.new(0, 20, 0, 20)
-        ConfigBtn.Image = "rbxassetid://7072714964" -- Ícone de engrenagem
+        ConfigBtn.Image = "rbxassetid://7072714964"
         ConfigBtn.ZIndex = 10
-        ConfigBtn.ImageColor3 = Color3.fromRGB(255, 255, 255) -- Cor Branca
+        ConfigBtn.ImageColor3 = Color3.fromRGB(255, 255, 255)
         
-        -- Ação do Botão
         ConfigBtn.MouseButton1Click:Connect(function()
-            local found = false
             for _, page in pairs(content:GetChildren()) do
                 if page.Name == "SettingsHide" then
-                    -- Esconde todas as outras páginas abertas
                     for _, anyPage in pairs(content:GetChildren()) do
-                        if anyPage:IsA("ScrollingFrame") then
-                            anyPage.Visible = false
-                        end
+                        if anyPage:IsA("ScrollingFrame") then anyPage.Visible = false end
                     end
-                    -- Mostra apenas a nossa aba de configurações
                     page.Visible = true
-                    found = true
-                    
-                    OrionLib:MakeNotification({
-                        Name = "Sistema",
-                        Content = "Menu de Ajustes aberto com sucesso!",
-                        Time = 2
-                    })
+                    OrionLib:MakeNotification({Name = "Sistema", Content = "Configurações Abertas", Time = 2})
                 end
             end
-            
-            if not found then
-                warn("Erro: Aba 'SettingsHide' não foi encontrada no Content.")
-            end
-        end)
-        
-        -- Efeito visual de clique (feedback)
-        ConfigBtn.MouseEnter:Connect(function()
-            ConfigBtn.ImageColor3 = Color3.fromRGB(200, 200, 200)
-        end)
-        ConfigBtn.MouseLeave:Connect(function()
-            ConfigBtn.ImageColor3 = Color3.fromRGB(255, 255, 255)
         end)
     end
 end)
-
